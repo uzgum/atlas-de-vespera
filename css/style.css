@@ -207,3 +207,106 @@ body {
     left: 2px;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
 }
+/* Layout general de personajes */
+.characters-layout {
+    display: flex;
+    gap: 1.5rem;
+    height: calc(100vh - 80px);
+    padding: 1.5rem;
+}
+
+/* Sidebar lateral */
+.characters-sidebar {
+    width: 280px;
+    background: #1a1815;
+    border: 1px solid #c5a059;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.character-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: #28241e;
+    border: 1px solid #3d352a;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.character-card:hover {
+    background: #363028;
+    border-color: #c5a059;
+}
+
+.character-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #c5a059;
+}
+
+/* Panel de detalle */
+.character-detail {
+    flex: 1;
+    background: #1a1815;
+    border: 1px solid #c5a059;
+    border-radius: 8px;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.character-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    border-bottom: 1px solid #3d352a;
+    padding-bottom: 1.5rem;
+}
+
+.character-portrait {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #c5a059;
+}
+
+.character-stats-bar {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.stat-box {
+    background: #28241e;
+    border: 1px solid #c5a059;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.stat-box span { display: block; font-size: 0.8rem; color: #a89f91; }
+.stat-box strong { font-size: 1.2rem; color: #f4ebd0; }
+
+.btn-download-pdf {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #8b0000;
+    color: #f4ebd0;
+    text-decoration: none;
+    border: 1px solid #c5a059;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-download-pdf:hover {
+    background: #a30000;
+}

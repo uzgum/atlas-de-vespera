@@ -219,3 +219,29 @@ locations.forEach(location => {
         updateInfoPanel(location);
     });
 });
+/* ===================================================
+   SISTEMA DE PESTAÑAS (NAVEGACIÓN)
+=================================================== */
+function switchTab(tabName) {
+    // Ocultar todas las pestañas
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.style.display = 'none');
+
+    // Quitar la clase active de todos los botones del menú
+    const navButtons = document.querySelectorAll('.nav-btn');
+    navButtons.forEach(btn => btn.classList.remove('active'));
+
+    // Mostrar la pestaña seleccionada
+    const activeTab = document.getElementById(`section-${tabName}`);
+    if (activeTab) {
+        activeTab.style.display = (tabName === 'mapa') ? 'flex' : 'block';
+    }
+
+    // Activar el botón correspondiente en el navbar
+    event.currentTarget.classList.add('active');
+
+    // Si regresamos al mapa, recalcular su tamaño por si acaso
+    if (tabName === 'mapa' && window.map) {
+        setTimeout(() => window.map.invalidateSize(), 100);
+    }
+}
