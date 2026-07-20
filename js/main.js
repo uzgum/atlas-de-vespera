@@ -115,7 +115,7 @@ const locations = [
         name: 'Torre',
         region: 'Tierras Salvajes',
         coords: [371, 1148],
-        isKnown: true,       // Saben que deben viajar hacia aquí
+        isKnown: false,       // Saben que deben viajar hacia aquí
         isPartyHere: false,
         description: 'Antigua torre donde mora un mago misterioso. Destino actual del grupo.',
         government: 'Ninguno',
