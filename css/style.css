@@ -396,3 +396,59 @@ body {
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+
+/* ===================================================
+   ADAPTACIÓN PARA MÓVILES Y TABLETS (RESPONSIVE)
+=================================================== */
+
+@media (max-width: 768px) {
+    /* 1. Header y Navegación */
+    .navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .navbar nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    /* 2. Sección del Mapa */
+    #main-layout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #map-section {
+        height: 50vh; /* El mapa ocupa la mitad superior de la pantalla */
+        width: 100%;
+    }
+
+    .codex-panel {
+        width: 100%;
+        max-height: none;
+    }
+
+    /* 3. Sección de Personajes */
+    .characters-layout {
+        flex-direction: column;
+        height: auto;
+        padding: 0.75rem;
+    }
+
+    .characters-sidebar {
+        width: 100%;
+        max-height: 200px; /* La lista de personajes se vuelve un menú desplazable arriba */
+    }
+
+    .character-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .character-stats-bar {
+        justify-content: space-around;
+    }
+}
