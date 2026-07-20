@@ -1,0 +1,209 @@
+/* ===========================
+   VARIABLES GLOBALES Y RESET
+=========================== */
+:root {
+    --bg-dark: #121316;
+    --bg-panel: #1b1c22;
+    --border-color: #3a2e2b;
+    --gold-accent: #c5a059;
+    --gold-bright: #f0c975;
+    --text-color: #d1c7bd;
+    --parchment-bg: #22201d;
+    --font-title: 'Cinzel', serif;
+    --font-body: 'Lora', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===========================
+   BARRA DE NAVEGACIÓN
+=========================== */
+.navbar {
+    background-color: #0b0c0e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    border-bottom: 3px double var(--gold-accent);
+    height: 65px;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--gold-bright);
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+}
+
+.navbar a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--gold-bright);
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold-accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    width: 80%;
+}
+
+/* ===========================
+   LAYOUT PRINCIPAL
+=========================== */
+#main-layout {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 65px);
+    width: 100%;
+}
+
+/* Sección del mapa */
+#map-section {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    background-color: #08080a;
+}
+
+/* El elemento contenedor real del mapa */
+#map {
+    width: 100%;
+    height: 100%;
+    background-color: #0d0e11; /* Fondo oscuro mientras carga */
+}
+
+/* Panel lateral tipo códice */
+.codex-panel {
+    width: 380px;
+    background-color: var(--bg-panel);
+    border-left: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 900;
+}
+
+.codex-header {
+    border-bottom: 1px solid var(--gold-accent);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.codex-header h2 {
+    font-family: var(--font-title);
+    color: var(--gold-bright);
+    font-size: 1.4rem;
+}
+
+.codex-subtitle {
+    font-size: 0.85rem;
+    color: #8a827a;
+    font-style: italic;
+}
+
+.codex-content {
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Ajustes para celulares (Responsive) */
+@media (max-width: 768px) {
+    #main-layout {
+        flex-direction: column;
+    }
+
+    .codex-panel {
+        width: 100%;
+        height: 250px;
+        border-left: none;
+        border-top: 2px solid var(--border-color);
+    }
+}
+/* ===========================
+   ICONOS PERSONALIZADOS (MAPA)
+=========================== */
+
+/* Contenedor transparente */
+.custom-pin {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Estilo base para el círculo */
+.pin-circle {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #c5a059; /* Borde dorado */
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Punto de Interés común: Relleno Blanco / Pergamino */
+.poi-pin {
+    background-color: #f4ebd0; /* Blanco pergamino suave */
+}
+
+/* Ubicación de la Party: Relleno Rojo */
+.party-pin {
+    background-color: #8b0000; /* Rojo carmesí */
+}
+
+/* Indicador triangular dorado para la Party */
+.party-indicator {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 11px solid #c5a059;
+    position: absolute;
+    top: -12px;
+    left: 2px;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
