@@ -7,14 +7,15 @@ const characters = [
         id: 'pj-1',
         name: 'Inna',
         player: 'Ari',
-        raceClass: 'Merkflok / Cleriga (Nivel 1)',
-        avatar: 'img/personajes/inna.png', // Ruta a la imagen del personaje
-        pdfUrl: 'docs/hoja-inna.pdf',       // Ruta al PDF descargable
-        alignment: 'Caótica Buena',
+        raceClass: 'Sirena / Cleriga (Nivel 1)',
+        avatar: 'img/personajes/inna.png',
+        pdfUrl: 'docs/hoja-inna.pdf',
+        alignment: 'Caótico Bueno',
         background: 'Acolita',
         stats: { hp: 9, ac: 11, speed: '30 ft' },
-        description: 'Exiliada del linaje real de un reino submarino.'
+        description: 'Una joven sirenita que ha abandonado su vida submarina...'
     },
+
 ];
 
 function renderCharactersList() {
@@ -42,7 +43,11 @@ function selectCharacter(pjId) {
     detailContainer.innerHTML = `
         <div class="character-detail-content">
             <div class="character-header">
-                <img src="${pj.avatar}" alt="${pj.name}" class="character-portrait" onerror="this.src='https://via.placeholder.com/150'">
+                <!-- La foto del personaje ahora abre la galería al hacer clic -->
+                <div class="portrait-wrapper" onclick="openImageModal('${pj.avatar}', '${pj.name}')">
+                    <img src="${pj.avatar}" alt="${pj.name}" class="character-portrait" onerror="this.src='https://via.placeholder.com/150'">
+                    <span class="zoom-icon">🔍 Ampliar</span>
+                </div>
                 <div>
                     <h2>${pj.name}</h2>
                     <p class="pj-subtitle">Jugador: <strong>${pj.player}</strong></p>
@@ -57,7 +62,7 @@ function selectCharacter(pjId) {
             </div>
 
             <div class="character-bio">
-                <h3>Trasfondo y Historia</h3>
+                <h3>Trasfondo e Historia</h3>
                 <p><strong>Origen:</strong> ${pj.background}</p>
                 <p>${pj.description}</p>
             </div>
@@ -69,6 +74,26 @@ function selectCharacter(pjId) {
             </div>
         </div>
     `;
+}
+
+/* --- LÓGICA DEL LIGHTBOX / GALERÍA DE IMÁGENES --- */
+function openImageModal(imgSrc, captionText) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const caption = document.getElementById('modal-caption');
+
+    if (modal && modalImg) {
+        modal.style.display = "flex";
+        modalImg.src = imgSrc;
+        if (caption) caption.innerHTML = captionText;
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-modal');
+    if (modal) {
+        modal.style.display = "none";
+    }
 }
 
 // Cargar la lista al iniciar
