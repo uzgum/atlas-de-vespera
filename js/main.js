@@ -254,4 +254,24 @@ function switchTab(tabName) {
             window.renderTimeline();
         }
     }
+    /* ===================================================
+   CONTROL DEL PANEL CÓDICE EN MÓVILES
+=================================================== */
+function toggleCodexPanel() {
+    const panel = document.getElementById('info-panel');
+    if (panel) {
+        panel.classList.toggle('active-mobile');
+    }
+}
+
+// Modificamos ligeramente updateInfoPanel para que abra el panel automáticamente al tocar un pin en móvil
+const originalUpdateInfoPanel = updateInfoPanel;
+updateInfoPanel = function(location) {
+    originalUpdateInfoPanel(location);
+    // Si estamos en pantalla chica, abre el panel al seleccionar
+    if (window.innerWidth <= 768) {
+        const panel = document.getElementById('info-panel');
+        if (panel) panel.classList.add('active-mobile');
+    }
+};
 }

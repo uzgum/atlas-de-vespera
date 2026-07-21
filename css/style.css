@@ -606,4 +606,81 @@ body {
     .stat-box {
         padding: 0.4rem 0.6rem;
     }
+/* ===================================================
+   DESPLEGABLE MÓVIL DEL EXPLORADOR (CÓDICE)
+=================================================== */
+
+/* Ocultar botones especiales en PC */
+.mobile-codex-btn,
+.close-codex-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #main-layout {
+        position: relative;
+        height: calc(100vh - 65px) !important;
+        overflow: hidden;
+    }
+
+    #map-section {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* Botón Flotante para abrir el Códice */
+    .mobile-codex-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: #1b1c22;
+        color: #f0c975;
+        border: 2px solid #c5a059;
+        padding: 10px 16px;
+        border-radius: 25px;
+        font-family: 'Cinzel', serif;
+        font-weight: bold;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+    }
+
+    /* Panel deslizable desde abajo */
+    .codex-panel {
+        position: absolute;
+        bottom: -100%; /* Oculto abajo */
+        left: 0;
+        width: 100% !important;
+        height: 60vh !important;
+        z-index: 2000;
+        transition: bottom 0.3s ease-in-out;
+        border-top: 3px double #c5a059;
+        border-left: none !important;
+        border-radius: 16px 16px 0 0;
+        background-color: #121316 !important;
+        box-shadow: 0 -10px 25px rgba(0,0,0,0.8);
+    }
+
+    /* Cuando se activa el panel en celular */
+    .codex-panel.active-mobile {
+        bottom: 0 !important;
+    }
+
+    /* Botón X para cerrar */
+    .close-codex-mobile {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #c5a059;
+        font-size: 1.8rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
 }

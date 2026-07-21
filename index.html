@@ -32,16 +32,21 @@
         </nav>
     </header>
 
-    <!-- PESTAÑA 1: SECCIÓN DEL MAPA INTERACTIVO -->
+<!-- PESTAÑA 1: SECCIÓN DEL MAPA INTERACTIVO -->
     <section id="section-mapa" class="tab-content active-tab">
         <div id="main-layout">
             <!-- Vista del Mapa -->
             <main id="map-section">
                 <div id="map"></div>
+                <!-- Botón flotante solo para móvil -->
+                <button id="toggle-codex-btn" class="mobile-codex-btn" onclick="toggleCodexPanel()">
+                    📜 Códice
+                </button>
             </main>
 
             <!-- Panel Códice -->
             <aside id="info-panel" class="codex-panel">
+                <button class="close-codex-mobile" onclick="toggleCodexPanel()">&times;</button>
                 <div class="codex-header">
                     <h2 id="location-title">Explorador de Vespera</h2>
                     <span class="codex-subtitle">Selecciona una ubicación en el mapa</span>
@@ -52,7 +57,7 @@
             </aside>
         </div>
     </section>
-
+    
     <!-- PESTAÑA 2: SECCIÓN PERSONAJES -->
     <section id="section-personajes" class="tab-content" style="display: none;">
         <div class="characters-layout">
