@@ -377,40 +377,23 @@ body {
    5. SECCIÓN CRONOLOGÍA (ESTILOS Y SCROLL)
 =================================================== */
 
-/* Ocupa el alto disponible bajo la barra superior y activa el scroll */
 #section-cronologia {
     height: calc(100vh - 65px) !important;
     overflow-y: auto !important;
     background-color: #0b0c0e !important;
-    
-    /* 1. Rejilla mística dorada 
-       2. Aura de la "Primera Llama" fija en el fondo */
     background-image: 
         radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 0),
         radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 12, 14, 1) 80%);
     background-size: 24px 24px, 100% 100%;
-    background-attachment: local, fixed; /* La rejilla baja contigo, la luz se queda en el centro */
+    background-attachment: local, fixed;
 }
+
 .timeline-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem 1.5rem 6rem 1.5rem;
     color: #f4ebd0;
     position: relative;
-}
-
-/* Resplandor místico de fondo detrás de las tarjetas */
-.timeline-container::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(0,0,0,0) 70%);
-    pointer-events: none;
-    z-index: 0;
 }
 
 .timeline-header {
@@ -499,7 +482,7 @@ body {
     white-space: pre-line;
 }
 
-/* Diseño alternado izquierda/derecha para pantallas de PC */
+/* Diseño alternado izquierda/derecha para PC */
 @media (min-width: 769px) {
     .timeline::before {
         left: 50%;
@@ -519,10 +502,24 @@ body {
         padding-right: 0;
     }
 
-   
+    .timeline-dot {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        right: auto !important;
+        top: 25px !important;
+    }
 }
+
 /* ===================================================
-   6. ADAPTACIÓN MÓVIL (RESPONSIVE)
+   6. BOTONES EXPLORADOR CÓDICE (GLOBAL)
+=================================================== */
+.close-codex-btn,
+.mobile-codex-btn {
+    display: none;
+}
+
+/* ===================================================
+   7. ADAPTACIÓN MÓVIL (RESPONSIVE FINAL)
 =================================================== */
 @media (max-width: 768px) {
     .navbar {
@@ -553,27 +550,30 @@ body {
         white-space: nowrap;
     }
 
+    /* Mapa en celular */
     #section-mapa.active-tab {
-        display: flex !important;
-        flex-direction: column;
+        display: block !important;
+        position: relative;
+        height: calc(100vh - 65px) !important;
+        overflow: hidden;
     }
 
     #main-layout {
+        position: relative;
+        height: 100% !important;
+        width: 100% !important;
         flex-direction: column;
-        height: auto;
     }
 
     #map-section {
-        height: 45vh;
-        width: 100%;
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
-    .codex-panel {
-        width: 100%;
-        max-height: none;
-        padding: 1rem;
-    }
-
+    /* Personajes en móvil */
     .characters-layout {
         flex-direction: column;
         height: auto;
@@ -606,41 +606,20 @@ body {
     .stat-box {
         padding: 0.4rem 0.6rem;
     }
-/* ===================================================
-   DESPLEGABLE MÓVIL DEL EXPLORADOR (CÓDICE)
-=================================================== */
 
-/* Ocultar botones especiales en PC */
-.mobile-codex-btn,
-.close-codex-mobile {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    #main-layout {
-        position: relative;
-        height: calc(100vh - 65px) !important;
-        overflow: hidden;
-    }
-
-    #map-section {
-        width: 100% !important;
-        height: 100% !important;
-    }
-
-    /* Botón Flotante para abrir el Códice */
+    /* Botón Flotante Códice en móvil */
     .mobile-codex-btn {
-        display: flex;
+        display: flex !important;
         align-items: center;
         gap: 6px;
         position: absolute;
-        bottom: 20px;
+        bottom: 25px;
         right: 20px;
         z-index: 1000;
         background: #1b1c22;
         color: #f0c975;
         border: 2px solid #c5a059;
-        padding: 10px 16px;
+        padding: 10px 18px;
         border-radius: 25px;
         font-family: 'Cinzel', serif;
         font-weight: bold;
@@ -649,38 +628,53 @@ body {
         cursor: pointer;
     }
 
-    /* Panel deslizable desde abajo */
+    /* Botón Cierre X circular en móvil */
+    .close-codex-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        width: 32px;
+        height: 32px;
+        background: rgba(197, 160, 89, 0.15) !important;
+        border: 1px solid #c5a059 !important;
+        border-radius: 50% !important;
+        color: #f0c975 !important;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 2100;
+        user-select: none;
+    }
+
+    .close-codex-btn:active {
+        background: #c5a059 !important;
+        color: #121316 !important;
+    }
+
+    /* Panel Códice desplegable desde ABAJO */
     .codex-panel {
         position: absolute;
-        bottom: -100%; /* Oculto abajo */
+        top: auto !important;
+        bottom: -100% !important;
         left: 0;
         width: 100% !important;
-        height: 60vh !important;
+        max-height: 55vh !important;
         z-index: 2000;
         transition: bottom 0.3s ease-in-out;
-        border-top: 3px double #c5a059;
+        border-top: 2px solid #c5a059;
         border-left: none !important;
         border-radius: 16px 16px 0 0;
         background-color: #121316 !important;
-        box-shadow: 0 -10px 25px rgba(0,0,0,0.8);
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.9);
+        overflow-y: auto;
+        padding: 2rem 1.2rem 1.5rem 1.2rem;
     }
 
-    /* Cuando se activa el panel en celular */
     .codex-panel.active-mobile {
         bottom: 0 !important;
-    }
-
-    /* Botón X para cerrar */
-    .close-codex-mobile {
-        display: block;
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        background: transparent;
-        border: none;
-        color: #c5a059;
-        font-size: 1.8rem;
-        font-weight: bold;
-        cursor: pointer;
     }
 }
