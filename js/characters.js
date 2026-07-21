@@ -1,11 +1,27 @@
 /* ===================================================
    GESTIÓN DE PERSONAJES Y FICHAS
 =================================================== */
+/* === PLANTILLA PARA NUEVO PERSONAJE ===
+{
+        id: 'pj-X',
+        name: '',
+        player: '',
+        raceClass: '',
+        avatar: 'img/personajes/nombre.jpg',
+        pdfUrl: 'docs/hoja-nombre.pdf',
+        alignment: '',
+        background: '',
+        stats: { hp: 0, ac: 0, speed: '30 ft' },
+        description: ''
+    },
+========================================= */
+
+//recordatorio, cambiar el .html a .pdf de las hojas para permirir la descarga directa de las hojas de personaje en PDF.
 
 const characters = [
     {
         id: 'pj-1',
-        name: 'Inna',
+        name: 'Inna 🌊',
         player: 'Ari',
         raceClass: 'Sirena / Cleriga (Nivel 1)',
         avatar: 'img/personajes/inna.png',
@@ -17,11 +33,11 @@ const characters = [
     },
     {
         id: 'pj-2',
-        name: 'Kani',
+        name: 'Kani 🪨',
         player: 'Erick',
         raceClass: 'Lotol / Guerrero (Nivel 1)',
-        avatar: 'img/personajes/Kani.jpeg', // Corrección: K mayúscula tal como está en GitHub
-        pdfUrl: 'docs/hoja-kani.pdf',
+        avatar: 'img/personajes/Kani.jpeg',
+        pdfUrl: 'docs/hoja-kani.html',
         alignment: 'Caótico Bueno',
         background: 'Guardia',
         stats: { hp: 12, ac: 16, speed: '30 ft' },
@@ -29,16 +45,67 @@ const characters = [
     },
     {
         id: 'pj-3',
-        name: 'Seira',
+        name: 'Seira ✨',
         player: 'Adrian',
         raceClass: 'Elfa Astral / Artificiero (Nivel 1)',
         avatar: 'img/personajes/seira.jpeg',
-        pdfUrl: 'docs/hoja-seira.pdf',
+        pdfUrl: 'docs/hoja-seira.html',
         alignment: 'Caótico Neutral',
         background: 'Cazador',
         stats: { hp: 8, ac: 12, speed: '30 ft' },
         description: 'Una brillante inventora proveniente de las estrellas, fascinada por los secretos del cosmos y decidida a comprender los misterios que conectan los mundos.'
-    }
+    },
+    {
+        id: 'pj-4',
+        name: 'Mooneth 🩸',
+        player: 'Monts',
+        raceClass: 'Dhampire / Mago (Nivel 1)',
+        avatar: 'img/personajes/mooneth.jpg',
+        pdfUrl: 'docs/hoja-mooneth.html',
+        alignment: 'Legal buena',
+        background: 'Aprendiz de mago',
+        stats: { hp: 7, ac: 12, speed: '30 ft' },
+        description: 'Exiliada de una antigua familia de magos, renunció a su linaje para vivir según sus ideales y ahora combate a las criaturas que destruyeron la vida que había elegido.'
+    },
+    {
+        id: 'pj-5',
+        name: 'Ren Kumari 🌌',
+        player: 'Beto',
+        raceClass: 'Humano / Druida (Nivel 1)',
+        avatar: 'img/personajes/ren kumari.jpg',
+        pdfUrl: 'docs/hoja-ren.html',
+        alignment: 'Neutral',
+        background: 'Tocado por las estrellas',
+        stats: { hp: 11, ac: 14, speed: '30 ft' },
+        description: 'Tocado por las estrellas desde su nacimiento, recorre el mundo siguiendo los susurros del firmamento y la llamada de la naturaleza.'
+    },
+    {
+        id: 'pj-6',
+        name: '(Por definir) 🍝',
+        player: 'Marco',
+        raceClass: 'Humano / Brujo (Nivel 1)',
+        avatar: 'img/personajes/pendiente.jpg',
+        pdfUrl: 'docs/hoja-nombre.html',
+        alignment: 'Caotico bueno',
+        background: 'Granjero',
+        stats: { hp: 10, ac: 12, speed: '30 ft' },
+        description: 'Un humilde granjero salvado por una insólita deidad con forma de espagueti, cuya fe lo impulsa a compartir el poder de su peculiar patrón.'
+    },
+    {
+        id: 'pj-7',
+        name: '(pendiente) 🐈',
+        player: 'Joa',
+        raceClass: 'Tabaxi / Pícaro (Nivel 1)',
+        avatar: 'img/personajes/nombre.jpg',
+        pdfUrl: 'docs/hoja-nombre.pdf',
+        alignment: 'Neutral Buena',
+        background: 'Asesina',
+        stats: { hp: 10, ac: 15, speed: '30 ft' },
+        description: 'Antigua asesina del gremio del Velo Gris que abandonó su primer gran contrato al descubrir un secreto capaz de cambiar el destino del mundo.'
+    },
+
+    
+    
 ];
 
 function renderCharactersList() {
