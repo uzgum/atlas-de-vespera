@@ -53,7 +53,7 @@
         </div>
     </section>
 
-<!-- PESTAÑA 2: SECCIÓN PERSONAJES -->
+    <!-- PESTAÑA 2: SECCIÓN PERSONAJES -->
     <section id="section-personajes" class="tab-content" style="display: none;">
         <div class="characters-layout">
             <!-- Lista lateral de PJs -->
@@ -67,16 +67,38 @@
         </div>
     </section>
 
-    <!-- MODAL DE GALERÍA DE IMÁGENES -->
+    <!-- PESTAÑA 3: SECCIÓN NPCS (Vacía temporalmente) -->
+    <section id="section-npcs" class="tab-content" style="display: none;">
+        <!-- Se llenará más adelante -->
+    </section>
+
+    <!-- PESTAÑA 4: SECCIÓN DIARIO (Vacía temporalmente) -->
+    <section id="section-diario" class="tab-content" style="display: none;">
+        <!-- Se llenará más adelante -->
+    </section>
+
+    <!-- PESTAÑA 5: SECCIÓN CRONOLOGÍA -->
+    <section id="section-cronologia" class="tab-content timeline-tab" style="display: none;">
+        <div class="timeline-container">
+            <header class="timeline-header">
+                <h2>Línea del Tiempo de Vespera</h2>
+                <p>Registro histórico de las eras y acontecimientos del reino.</p>
+            </header>
+            
+            <div id="timeline-events" class="timeline"></div>
+        </div>
+    </section>
+<!-- MODAL DE GALERÍA DE IMÁGENES -->
     <div id="image-modal" class="image-modal" onclick="closeImageModal()">
         <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modal-img">
+        <img class="modal-content" id="modal-img" alt="Vista ampliada">
         <div id="modal-caption"></div>
     </div>
 
-    <!-- LIBRERÍAS Y SCRIPTS (Una sola vez al final) -->
+    <!-- LIBRERÍAS Y SCRIPTS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
     <script src="js/characters.js"></script>
-</body>
+    <script src="js/timeline.js"></script>
+  </body>
 </html>
