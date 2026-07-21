@@ -241,14 +241,13 @@ function switchTab(tabName) {
     // 4. Mostrar únicamente la pestaña seleccionada
     const activeSection = document.getElementById(`section-${tabName}`);
     if (activeSection) {
-        if (tabName === 'cronologia') {
-            activeSection.style.display = 'block'; // Muestra la cronología respetando el scroll del CSS
-        } else if (tabName === 'mapa') {
+        if (tabName === 'mapa') {
             activeSection.style.display = 'flex';
-            if (typeof map !== 'undefined') setTimeout(() => map.invalidateSize(), 200); // Recalcula el mapa
+            if (typeof map !== 'undefined') setTimeout(() => map.invalidateSize(), 200);
         } else {
-            activeSection.style.display = 'block';
+            activeSection.style.display = ''; // Deja que el CSS controle el display
         }
         activeSection.classList.add('active-tab');
     }
+
 }
