@@ -9,11 +9,35 @@ const characters = [
         player: 'Ari',
         raceClass: 'Sirena / Cleriga (Nivel 1)',
         avatar: 'img/personajes/inna.png',
-        pdfUrl: 'docs/hoja-inna.pdf',
+        pdfUrl: 'docs/hoja-inna.html',
         alignment: 'Caótico Bueno',
         background: 'Acolita',
         stats: { hp: 9, ac: 11, speed: '30 ft' },
         description: 'Una joven sirenita que ha abandonado su vida submarina...'
+    },
+    {
+        id: 'pj-2',
+        name: 'Kani',
+        player: 'Erick',
+        raceClass: 'Lotol / Guerrero (Nivel 1)',
+        avatar: 'img/personajes/kani.jpeg',
+        pdfUrl: 'docs/hoja-kani.pdf',
+        alignment: 'Caótico Bueno',
+        background: 'Guardia',
+        stats: { hp: 12, ac: 16, speed: '30 ft' },
+        description: 'Guardián Lotol entrenado para defender las ciudades de piedra, busca aliados para salvar a su pueblo mientras intenta encontrar el camino de regreso a su mundo...'
+    },
+    {
+        id: 'pj-3',
+        name: 'Seira',
+        player: 'Adrian',
+        raceClass: 'Elfa Astras / Artificiero (Nivel 1)',
+        avatar: 'img/personajes/seira.jpeg',
+        pdfUrl: 'docs/hoja-seira.pdf',
+        alignment: 'Caótico Neutral',
+        background: 'Cazador',
+        stats: { hp: 8, ac: 12, speed: '30 ft' },
+        description: 'Una brillante inventora proveniente de las estrellas, fascinada por los secretos del cosmos y decidida a comprender los misterios que conectan los mundos.'
     },
 
 ];
