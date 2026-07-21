@@ -96,7 +96,7 @@ const characters = [
         name: '(pendiente) 🐈',
         player: 'Joa',
         raceClass: 'Tabaxi / Pícaro (Nivel 1)',
-        avatar: 'img/personajes/nombre.jpg',
+        avatar: '',
         pdfUrl: 'docs/hoja-nombre.pdf',
         alignment: 'Neutral Buena',
         background: 'Asesina',

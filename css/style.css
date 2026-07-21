@@ -1,6 +1,6 @@
-/* ===========================
-   VARIABLES GLOBALES Y RESET
-=========================== */
+/* ===================================================
+   1. VARIABLES GLOBALES Y RESET
+=================================================== */
 :root {
     --bg-dark: #121316;
     --bg-panel: #1b1c22;
@@ -29,9 +29,9 @@ body {
     overflow: hidden;
 }
 
-/* ===========================
-   BARRA DE NAVEGACIÓN
-=========================== */
+/* ===================================================
+   2. BARRA DE NAVEGACIÓN
+=================================================== */
 .navbar {
     background-color: #0b0c0e;
     display: flex;
@@ -90,9 +90,9 @@ body {
     width: 80%;
 }
 
-/* ===========================
-   LAYOUT PRINCIPAL
-=========================== */
+/* ===================================================
+   3. LAYOUT PRINCIPAL (MAPA Y CÓDICE)
+=================================================== */
 #main-layout {
     display: flex;
     flex: 1;
@@ -100,7 +100,6 @@ body {
     width: 100%;
 }
 
-/* Sección del mapa */
 #map-section {
     flex: 1;
     height: 100%;
@@ -108,14 +107,12 @@ body {
     background-color: #08080a;
 }
 
-/* El elemento contenedor real del mapa */
 #map {
     width: 100%;
     height: 100%;
-    background-color: #0d0e11; /* Fondo oscuro mientras carga */
+    background-color: #0d0e11;
 }
 
-/* Panel lateral tipo códice */
 .codex-panel {
     width: 380px;
     background-color: var(--bg-panel);
@@ -150,34 +147,16 @@ body {
     font-size: 0.95rem;
 }
 
-/* Ajustes para celulares (Responsive) */
-@media (max-width: 768px) {
-    #main-layout {
-        flex-direction: column;
-    }
-
-    .codex-panel {
-        width: 100%;
-        height: 250px;
-        border-left: none;
-        border-top: 2px solid var(--border-color);
-    }
-}
-/* ===========================
-   ICONOS PERSONALIZADOS (MAPA)
-=========================== */
-
-/* Contenedor transparente */
+/* PINES Y CUADRÍCULA */
 .custom-pin {
     background: transparent !important;
     border: none !important;
 }
 
-/* Estilo base para el círculo */
 .pin-circle {
     width: 18px;
     height: 18px;
-    border: 2px solid #c5a059; /* Borde dorado */
+    border: 2px solid #c5a059;
     border-radius: 50%;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
     position: absolute;
@@ -185,17 +164,14 @@ body {
     left: 0;
 }
 
-/* Punto de Interés común: Relleno Blanco / Pergamino */
 .poi-pin {
-    background-color: #f4ebd0; /* Blanco pergamino suave */
+    background-color: #f4ebd0;
 }
 
-/* Ubicación de la Party: Relleno Rojo */
 .party-pin {
-    background-color: #8b0000; /* Rojo carmesí */
+    background-color: #8b0000;
 }
 
-/* Indicador triangular dorado para la Party */
 .party-indicator {
     width: 0;
     height: 0;
@@ -207,7 +183,10 @@ body {
     left: 2px;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
 }
-/* Layout general de personajes */
+
+/* ===================================================
+   4. SECCIÓN PERSONAJES
+=================================================== */
 .characters-layout {
     display: flex;
     gap: 1.5rem;
@@ -215,7 +194,6 @@ body {
     padding: 1.5rem;
 }
 
-/* Sidebar lateral */
 .characters-sidebar {
     width: 280px;
     background: #1a1815;
@@ -251,7 +229,6 @@ body {
     border: 1px solid #c5a059;
 }
 
-/* Panel de detalle */
 .character-detail {
     flex: 1;
     background: #1a1815;
@@ -311,7 +288,7 @@ body {
     background: #a30000;
 }
 
-/* --- ESTILOS DE RETRATO Y GALERÍA / LIGHTBOX --- */
+/* MODAL Y LIGHTBOX */
 .portrait-wrapper {
     position: relative;
     cursor: pointer;
@@ -344,7 +321,6 @@ body {
     font-family: 'Cinzel', serif;
 }
 
-/* Modal flotante */
 .image-modal {
     display: none;
     position: fixed;
@@ -398,103 +374,20 @@ body {
 }
 
 /* ===================================================
-   ADAPTACIÓN MÓVIL PERFECTA (RESPONSIVE)
+   5. SECCIÓN CRONOLOGÍA (ESTILOS Y SCROLL)
 =================================================== */
 
-@media (max-width: 768px) {
-    /* 1. Header y Logo */
-    .navbar {
-        flex-direction: column;
-        padding: 0.5rem;
-        align-items: center;
-    }
-
-    .navbar .logo {
-        font-size: 1.2rem !important; /* Achicamos el título para que no ocupe 3 líneas */
-        margin-bottom: 0.4rem;
-        text-align: center;
-    }
-
-    /* Menú de botones deslizable horizontalmente en celular */
-    .navbar nav ul {
-        display: flex;
-        flex-wrap: nowrap; /* Mantiene los botones en una sola línea */
-        overflow-x: auto;  /* Permite deslizar los botones hacia la derecha si no caben */
-        width: 100%;
-        padding-bottom: 5px;
-        gap: 0.5rem;
-        justify-content: flex-start;
-    }
-
-    .navbar nav ul li a {
-        font-size: 0.85rem;
-        padding: 4px 8px;
-        white-space: nowrap; /* Evita que el texto de los botones se rompa */
-    }
-
-    /* 2. Sección del Mapa */
-    #section-mapa.active-tab {
-        display: flex !important;
-        flex-direction: column;
-    }
-
-    #main-layout {
-        flex-direction: column;
-        height: auto;
-    }
-
-    #map-section {
-        height: 45vh; /* El mapa ocupa casi la mitad de la pantalla */
-        width: 100%;
-    }
-
-    .codex-panel {
-        width: 100%;
-        max-height: none;
-        padding: 1rem;
-    }
-
-    /* 3. Sección de Personajes */
-    .characters-layout {
-        flex-direction: column;
-        height: auto;
-        padding: 0.5rem;
-        gap: 1rem;
-    }
-
-    .characters-sidebar {
-        width: 100%;
-        max-height: 180px;
-    }
-
-    .character-detail {
-        width: 100%;
-        padding: 1rem;
-        box-sizing: border-box; /* Evita que la tarjeta se salga por la derecha */
-    }
-
-    .character-header {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .character-stats-bar {
-        justify-content: space-around;
-        gap: 0.5rem;
-    }
-
-    .stat-box {
-        padding: 0.4rem 0.6rem;
-    }
-    /* ===================================================
-   SECCIÓN CRONOLOGÍA / LÍNEA DEL TIEMPO
-=================================================== */
+/* Ocupa el alto disponible bajo la barra superior y activa el scroll */
+#section-cronologia {
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto !important;
+    background-color: #0b0c0e;
+}
 
 .timeline-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem 6rem 1.5rem;
     color: #f4ebd0;
 }
 
@@ -505,9 +398,15 @@ body {
 
 .timeline-header h2 {
     font-family: 'Cinzel', serif;
-    color: #c5a059;
+    color: #f0c975;
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+.timeline-header p {
+    color: #a89f91;
+    font-style: italic;
 }
 
 /* Eje central de la línea del tiempo */
@@ -520,44 +419,43 @@ body {
     content: '';
     position: absolute;
     top: 0;
-    left: 18px; /* En móviles se pega a la izquierda */
+    left: 18px;
     height: 100%;
     width: 3px;
     background: linear-gradient(180deg, #c5a059 0%, rgba(197, 160, 89, 0.2) 100%);
 }
 
-/* Cada bloque de Era o Evento */
 .timeline-item {
     position: relative;
     margin-bottom: 2.5rem;
     padding-left: 50px;
 }
 
-/* El nodo/punto brillante sobre la línea */
 .timeline-dot {
     position: absolute;
     left: 10px;
-    top: 5px;
+    top: 22px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background-color: #28241e;
-    border: 3px solid #c5a059;
-    box-shadow: 0 0 10px rgba(197, 160, 89, 0.6);
+    background-color: #121316;
+    border: 3px solid #f0c975;
+    box-shadow: 0 0 10px rgba(240, 201, 117, 0.6);
+    z-index: 2;
 }
 
-/* Tarjeta con el texto histórico */
+/* Tarjeta de cada Era */
 .timeline-content {
-    background: rgba(26, 23, 19, 0.85);
+    background: #18191e;
     border: 1px solid #c5a059;
     border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 1.8rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
 }
 
 .timeline-era {
     font-family: 'Cinzel', serif;
-    color: #c5a059;
+    color: #f0c975;
     font-size: 1.4rem;
     margin-top: 0;
     margin-bottom: 0.75rem;
@@ -565,14 +463,21 @@ body {
     padding-bottom: 0.4rem;
 }
 
-.timeline-text {
-    line-height: 1.6;
-    color: #d1c7b7;
-    font-size: 0.98rem;
-    white-space: pre-line; /* Respeta los saltos de línea de tu texto */
+.timeline-quote {
+    font-style: italic;
+    color: #c5a059;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
 }
 
-/* Adaptación para pantallas de escritorio (centrado alternado) */
+.timeline-text {
+    line-height: 1.7;
+    color: #d1c7b7;
+    font-size: 0.98rem;
+    white-space: pre-line;
+}
+
+/* Diseño alternado izquierda/derecha para pantallas de PC */
 @media (min-width: 769px) {
     .timeline::before {
         left: 50%;
@@ -594,11 +499,97 @@ body {
 
     .timeline-item:nth-child(odd) .timeline-dot {
         left: auto;
-        right: -11px;
+        right: -9px;
     }
 
     .timeline-item:nth-child(even) .timeline-dot {
-        left: -8px;
+        left: -9px;
     }
 }
+
+/* ===================================================
+   6. ADAPTACIÓN MÓVIL (RESPONSIVE)
+=================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 0.5rem;
+        align-items: center;
+    }
+
+    .navbar .logo {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.4rem;
+        text-align: center;
+    }
+
+    .navbar nav ul {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 5px;
+        gap: 0.5rem;
+        justify-content: flex-start;
+    }
+
+    .navbar nav ul li a {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+        white-space: nowrap;
+    }
+
+    #section-mapa.active-tab {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    #main-layout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #map-section {
+        height: 45vh;
+        width: 100%;
+    }
+
+    .codex-panel {
+        width: 100%;
+        max-height: none;
+        padding: 1rem;
+    }
+
+    .characters-layout {
+        flex-direction: column;
+        height: auto;
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+
+    .characters-sidebar {
+        width: 100%;
+        max-height: 180px;
+    }
+
+    .character-detail {
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .character-header {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .character-stats-bar {
+        justify-content: space-around;
+        gap: 0.5rem;
+    }
+
+    .stat-box {
+        padding: 0.4rem 0.6rem;
+    }
 }
