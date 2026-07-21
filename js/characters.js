@@ -20,7 +20,7 @@ const characters = [
         name: 'Kani',
         player: 'Erick',
         raceClass: 'Lotol / Guerrero (Nivel 1)',
-        avatar: 'img/personajes/Kani.jpeg',
+        avatar: 'img/personajes/Kani.jpeg', // Corrección: K mayúscula tal como está en GitHub
         pdfUrl: 'docs/hoja-kani.pdf',
         alignment: 'Caótico Bueno',
         background: 'Guardia',
@@ -38,8 +38,7 @@ const characters = [
         background: 'Cazador',
         stats: { hp: 8, ac: 12, speed: '30 ft' },
         description: 'Una brillante inventora proveniente de las estrellas, fascinada por los secretos del cosmos y decidida a comprender los misterios que conectan los mundos.'
-    },
-
+    }
 ];
 
 function renderCharactersList() {
@@ -48,7 +47,7 @@ function renderCharactersList() {
 
     listContainer.innerHTML = characters.map(pj => `
         <div class="character-card" onclick="selectCharacter('${pj.id}')">
-            <img src="${pj.avatar}" alt="${pj.name}" class="character-thumb" onerror="this.src='https://via.placeholder.com/50'">
+            <img src="${pj.avatar}" alt="${pj.name}" class="character-thumb" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 50 50\'><rect width=\'100%\' height=\'100%\' fill=\'%2328241e\'/><text x=\'50%\' y=\'50%\' fill=\'%23c5a059\' font-size=\'20\' text-anchor=\'middle\' dy=\'.3em\'>👤</text></svg>';">
             <div class="character-card-info">
                 <h4>${pj.name}</h4>
                 <p>${pj.raceClass}</p>
@@ -67,9 +66,9 @@ function selectCharacter(pjId) {
     detailContainer.innerHTML = `
         <div class="character-detail-content">
             <div class="character-header">
-                <!-- La foto del personaje ahora abre la galería al hacer clic -->
+                <!-- La foto del personaje abre la galería al hacer clic -->
                 <div class="portrait-wrapper" onclick="openImageModal('${pj.avatar}', '${pj.name}')">
-                    <img src="${pj.avatar}" alt="${pj.name}" class="character-portrait" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="${pj.avatar}" alt="${pj.name}" class="character-portrait" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 150 150\'><rect width=\'100%\' height=\'100%\' fill=\'%2328241e\'/><text x=\'50%\' y=\'50%\' fill=\'%23c5a059\' font-size=\'50\' text-anchor=\'middle\' dy=\'.3em\'>👤</text></svg>';">
                     <span class="zoom-icon">🔍 Ampliar</span>
                 </div>
                 <div>
