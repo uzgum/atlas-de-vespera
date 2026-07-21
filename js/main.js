@@ -245,9 +245,13 @@ function switchTab(tabName) {
             activeSection.style.display = 'flex';
             if (typeof map !== 'undefined') setTimeout(() => map.invalidateSize(), 200);
         } else {
-            activeSection.style.display = ''; // Deja que el CSS controle el display
+            activeSection.style.display = 'block';
         }
         activeSection.classList.add('active-tab');
-    }
 
+        // Renderizar la cronología si se selecciona esta pestaña
+        if (tabName === 'cronologia' && typeof window.renderTimeline === 'function') {
+            window.renderTimeline();
+        }
+    }
 }
