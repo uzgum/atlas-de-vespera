@@ -223,25 +223,32 @@ locations.forEach(location => {
    SISTEMA DE PESTAÑAS (NAVEGACIÓN)
 =================================================== */
 function switchTab(tabName) {
-    // Ocultar todas las pestañas
-    const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => tab.style.display = 'none');
-
-    // Quitar la clase active de todos los botones del menú
+    // 1. Desactivar todos los botones de la barra superior
     const navButtons = document.querySelectorAll('.nav-btn');
     navButtons.forEach(btn => btn.classList.remove('active'));
 
-    // Mostrar la pestaña seleccionada
-    const activeTab = document.getElementById(`section-${tabName}`);
-    if (activeTab) {
-        activeTab.style.display = (tabName === 'mapa') ? 'flex' : 'block';
-    }
+    // 2. Ocultar todas las secciones
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(content => {
+        content.style.display = 'none';
+        content.classList.remove('active-tab');
+    });
 
-    // Activar el botón correspondiente en el navbar
-    event.currentTarget.classList.add('active');
+    // 3. Activar el botón presionado
+    const selectedBtn = document.querySelector(`.nav-btn[onclick="switchTab('${tabName}')"]`);
+    if (selectedBtn) selectedBtn.classList.add('active');
 
-    // Si regresamos al mapa, recalcular su tamaño por si acaso
-    if (tabName === 'mapa' && window.map) {
-        setTimeout(() => window.map.invalidateSize(), 100);
+    // 4. Mostrar únicamente la pestaña seleccionada
+    const activeSection = document.getElementById(`section-${tabName}`);
+    if (activeSection) {
+        if (tabName === 'cronologia') {
+            activeSection.style.display = 'block'; // Muestra la cronología respetando el scroll del CSS
+        } else if (tabName === 'mapa') {
+            activeSection.style.display = 'flex';
+            if (typeof map !== 'undefined') setTimeout(() => map.invalidateSize(), 200); // Recalcula el mapa
+        } else {
+            activeSection.style.display = 'block';
+        }
+        activeSection.classList.add('active-tab');
     }
 }
