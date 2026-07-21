@@ -47,7 +47,7 @@ const characters = [
         id: 'pj-3',
         name: 'Seira ✨',
         player: 'Adrian',
-        raceClass: 'Elfa Astral / Artificiero (Nivel 1)',
+        raceClass: 'Elfa Astral / Artificiera (Nivel 1)',
         avatar: 'img/personajes/seira.jpeg',
         pdfUrl: 'docs/hoja-seira.html',
         alignment: 'Caótico Neutral',
