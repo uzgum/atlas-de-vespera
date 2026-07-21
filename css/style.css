@@ -502,11 +502,20 @@ body {
         padding-right: 0;
     }
 
-    .timeline-dot {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
+    /* Puntos para tarjetas a la IZQUIERDA (se mandan a la línea central) */
+    .timeline-item:nth-child(odd) .timeline-dot {
+        left: auto !important;
+        right: -9px !important;
+        top: 25px !important;
+        transform: none !important;
+    }
+
+    /* Puntos para tarjetas a la DERECHA (se mandan a la línea central) */
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -9px !important;
         right: auto !important;
         top: 25px !important;
+        transform: none !important;
     }
 }
 
