@@ -381,14 +381,36 @@ body {
 #section-cronologia {
     height: calc(100vh - 65px) !important;
     overflow-y: auto !important;
-    background-color: #0b0c0e;
+    background-color: #0b0c0e !important;
+    
+    /* 1. Rejilla mística dorada 
+       2. Aura de la "Primera Llama" fija en el fondo */
+    background-image: 
+        radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 0),
+        radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 12, 14, 1) 80%);
+    background-size: 24px 24px, 100% 100%;
+    background-attachment: local, fixed; /* La rejilla baja contigo, la luz se queda en el centro */
 }
-
 .timeline-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem 1.5rem 6rem 1.5rem;
     color: #f4ebd0;
+    position: relative;
+}
+
+/* Resplandor místico de fondo detrás de las tarjetas */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .timeline-header {
@@ -497,16 +519,8 @@ body {
         padding-right: 0;
     }
 
-    .timeline-item:nth-child(odd) .timeline-dot {
-        left: auto;
-        right: -9px;
-    }
-
-    .timeline-item:nth-child(even) .timeline-dot {
-        left: -9px;
-    }
+   
 }
-
 /* ===================================================
    6. ADAPTACIÓN MÓVIL (RESPONSIVE)
 =================================================== */
