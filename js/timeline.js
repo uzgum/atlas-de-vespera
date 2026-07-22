@@ -36,9 +36,13 @@ const historyEras = [
     {
         id: 'era-estrellas',
         era: '✨ La Era de las Estrellas',
-        quote: '"El firmamento vivo."',
-        description: `Los primeros astrónomos comenzaron a observar el firmamento y descubrieron que algunas estrellas no permanecían inmóviles.\n\nLos magos afirmaban que el cielo estaba vivo, los sacerdotes pensaban que eran dioses, y los druidas aseguraban que eran espíritus. Todos estaban equivocados, pero nadie podía demostrarlo.\n\nDurante esta época surgieron los primeros observatorios; muchos permanecen en ruinas hasta el día de hoy.`
-    },
+        quote: '"El firmamento vivo y la esencia de las constelaciones."',
+        description: `Los primeros astrónomos comenzaron a observar el firmamento y descubrieron que algunas estrellas no permanecían inmóviles. Los magos afirmaban que el cielo estaba vivo, los sacerdotes pensaban que eran dioses, y los druidas aseguraban que eran espíritus. Todos estaban equivocados... y a la vez, todos tenían razón.
+
+            Durante esta época surgieron los primeros observatorios que hoy permanecen en ruinas, y con ellos nacieron los primeros círculos druídicos dedicados a descifrar las Convergencias Celestes.
+
+            *Sus antiguos registros describían a los Guardianes del Firmamento: espíritus ancestrales enlazados a las constelaciones que compartían su esencia con mortales nacidos bajo alineaciones sagradas. Aunque el resto del mundo archivó esto como simple mitología, los druidas conservaron celosamente la verdad.*`
+   },
     {
         id: 'era-reinos',
         era: '⚔️ La Era de los Reinos',
