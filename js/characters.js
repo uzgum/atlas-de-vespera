@@ -96,7 +96,7 @@ const characters = [
         name: 'Nyxidea 🐈',
         player: 'Joa',
         raceClass: 'Tabaxi / Pícaro (Nivel 1)',
-        avatar: 'img/personajes/nyxidea.jpeg',
+        avatar: 'img/personajes/Nyxidea.jpeg',
         pdfUrl: 'docs/hoja-nyxidea.html',
         alignment: 'Neutral Buena',
         background: 'Asesina',
