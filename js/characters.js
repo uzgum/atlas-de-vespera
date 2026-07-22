@@ -146,7 +146,7 @@ function selectCharacter(pjId) {
             </div>
 
             <div class="character-stats-bar">
-                <div class="stat-box"><span>PG</span><strong>${pj.stats.hp}</strong></div>
+                <div class="stat-box"><span>HP</span><strong>${pj.stats.hp}</strong></div>
                 <div class="stat-box"><span>CA</span><strong>${pj.stats.ac}</strong></div>
                 <div class="stat-box"><span>Velocidad</span><strong>${pj.stats.speed}</strong></div>
             </div>
