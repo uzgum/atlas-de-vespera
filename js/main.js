@@ -5,7 +5,7 @@
 // 1. RUTA Y DIMENSIONES DE TU MAPA
 const MAP_IMAGE_URL = 'img/mapa-tourvile.jpg'; 
 
-// Ancho y Alto exactos de tu imagen en píxeles (cámbialos por los reales)
+// Ancho y Alto exactos de tu imagen en píxeles
 const MAP_WIDTH = 2048;  
 const MAP_HEIGHT = 1024; 
 
@@ -33,7 +33,6 @@ map.fitBounds(mapBounds);
    CUADRÍCULA HEXAGONAL PARA MEDIR DISTANCIAS
 =================================================== */
 
-// Reducimos el tamaño para ajustar la escala a 2 hexágonos de viaje
 const HEX_SIZE = 32; 
 
 function createHexagonPath(centerX, centerY, size) {
@@ -64,33 +63,28 @@ const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg")
 svgElement.setAttribute('xmlns', "http://www.w3.org/2000/svg");
 svgElement.setAttribute('viewBox', `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`);
 
-// Línea continua, más oscura (negro al 55% de opacidad) para que resalte sobre el mapa
 svgElement.innerHTML = `<path d="${hexPaths}" fill="none" stroke="rgb(173, 173, 173)" stroke-width="1.2"/>`;
 
 const hexGridLayer = L.svgOverlay(svgElement, mapBounds);
+
 /* ===================================================
-   CONTROL DE CAPAS (CHECKBOX EN ESQUINA SUPERIOR DERECHA)
+   CONTROL DE CAPAS
 =================================================== */
 
-// Objeto con las capas opcionales que el jugador/DM puede encender u apagar
 const overlayLayers = {
     "📐 Cuadrícula (1 Hex = 1 Día)": hexGridLayer
 };
 
-// Agrega el menú desplegable en la esquina superior derecha del mapa
 L.control.layers(null, overlayLayers, { collapsed: false }).addTo(map);
 
-
 /* ===================================================
-   HERRAMIENTA PARA EL DM: OBTENER COORDENADAS AL HACER CLIC
-   (Abre la consola de tu navegador con F12 para verlas)
+   HERRAMIENTA DM: COORDENADAS AL CLIC
 =================================================== */
 map.on('click', function(e) {
     const y = Math.round(e.latlng.lat);
     const x = Math.round(e.latlng.lng);
     console.log(`📍 Coordenada capturada para tu lista: coords: [${y}, ${x}]`);
 });
-
 
 /* ===================================================
    BASE DE DATOS DE UBICACIONES
@@ -102,8 +96,8 @@ const locations = [
         name: 'Punto de Inicio',
         region: 'Plains of Dawn',
         coords: [425, 1163],
-        isKnown: true,       // Conocido por la party
-        isPartyHere: true,   // La party inicia su aventura aquí
+        isKnown: true,
+        isPartyHere: true,
         description: 'Pequeño ploblado de las llanuras.',
         government: 'concilio de ancianos',
         population: 'Pequeño asentamiento',
@@ -115,7 +109,7 @@ const locations = [
         name: 'Torre',
         region: 'Tierras Salvajes',
         coords: [371, 1148],
-        isKnown: false,       // Saben que deben viajar hacia aquí
+        isKnown: false,
         isPartyHere: false,
         description: 'Antigua torre donde mora un mago misterioso. Destino actual del grupo.',
         government: 'Ninguno',
@@ -128,7 +122,7 @@ const locations = [
         name: 'Plotport',
         region: 'Costa del Sol',
         coords: [305, 1176],
-        isKnown: false,      // ¡OCULTA! Se desbloqueará al finalizar la Sesión 1
+        isKnown: false,
         isPartyHere: false,
         description: 'Una próspera ciudad portuaria conocida por sus comerciantes ruidosos y muelles siempre ocupados.',
         government: 'Consejo Mercante',
@@ -146,36 +140,35 @@ function updateInfoPanel(location) {
     const titleElement = document.getElementById('location-title');
     const detailsElement = document.getElementById('location-details');
 
-    titleElement.textContent = location.name;
+    if (titleElement) titleElement.textContent = location.name;
 
-    detailsElement.innerHTML = `
-        <p style="margin-bottom: 0.5rem; color: var(--gold-accent);">
-            <strong>Región:</strong> ${location.region}
-        </p>
-        <p style="margin-bottom: 0.5rem;">
-            <strong>Gobierno:</strong> ${location.government}
-        </p>
-        <p style="margin-bottom: 0.5rem;">
-            <strong>Población:</strong> ${location.population}
-        </p>
-        <p style="margin-bottom: 0.5rem;">
-            <strong>Razas:</strong> ${location.races}
-        </p>
-        <p style="margin-bottom: 1rem;">
-            <strong>NPCs destacados:</strong> ${location.importantNPCs}
-        </p>
-        <hr style="border-color: var(--border-color); margin: 1rem 0;">
-        <p>${location.description}</p>
-    `;
+    if (detailsElement) {
+        detailsElement.innerHTML = `
+            <p style="margin-bottom: 0.5rem; color: var(--gold-accent);">
+                <strong>Región:</strong> ${location.region}
+            </p>
+            <p style="margin-bottom: 0.5rem;">
+                <strong>Gobierno:</strong> ${location.government}
+            </p>
+            <p style="margin-bottom: 0.5rem;">
+                <strong>Población:</strong> ${location.population}
+            </p>
+            <p style="margin-bottom: 0.5rem;">
+                <strong>Razas:</strong> ${location.races}
+            </p>
+            <p style="margin-bottom: 1rem;">
+                <strong>NPCs destacados:</strong> ${location.importantNPCs}
+            </p>
+            <hr style="border-color: var(--border-color); margin: 1rem 0;">
+            <p>${location.description}</p>
+        `;
+    }
 }
 
-
-
 /* ===================================================
-   DEFINICIÓN DE ICONOS (HTML/CSS)
+   DEFINICIÓN DE ICONOS
 =================================================== */
 
-// Icono con centro blanco para puntos de interés normales
 const poiIcon = L.divIcon({
     className: 'custom-pin',
     html: '<div class="pin-circle poi-pin"></div>',
@@ -183,7 +176,6 @@ const poiIcon = L.divIcon({
     iconAnchor: [10, 10]
 });
 
-// Icono con centro rojo e indicador dorado para la Party
 const partyIcon = L.divIcon({
     className: 'custom-pin',
     html: '<div class="pin-circle party-pin"></div><div class="party-indicator"></div>',
@@ -196,36 +188,30 @@ const partyIcon = L.divIcon({
 =================================================== */
 
 locations.forEach(location => {
-    // Si la ubicación no es conocida, se ignora
     if (!location.isKnown) return;
 
-    // --- CAMBIO AQUÍ ---
-    // Decidir qué icono usar
     const iconoAUsar = location.isPartyHere ? partyIcon : poiIcon;
-
-    // Crear pin usando el icono seleccionado
     const marker = L.marker(location.coords, { icon: iconoAUsar }).addTo(map);
-    // -------------------
 
-    // Etiqueta flotante
     let label = location.name;
     if (location.isPartyHere) {
         label += ' 📍 (Party)';
     }
     marker.bindTooltip(label, { direction: 'top', offset: [0, -10] });
 
-    // Evento de clic
     marker.on('click', () => {
         updateInfoPanel(location);
     });
 });
+
 /* ===================================================
-   SISTEMA DE PESTAÑAS (NAVEGACIÓN)
+   SISTEMA DE PESTAÑAS (NAVEGACIÓN POR ENLACES/HASH)
 =================================================== */
+
 function switchTab(tabName) {
-    // 1. Desactivar todos los botones de la barra superior
-    const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(btn => btn.classList.remove('active'));
+    // 1. Desactivar todos los enlaces de la barra
+    const navLinks = document.querySelectorAll('.navbar a');
+    navLinks.forEach(link => link.classList.remove('active'));
 
     // 2. Ocultar todas las secciones
     const tabContents = document.querySelectorAll('.tab-content');
@@ -234,11 +220,11 @@ function switchTab(tabName) {
         content.classList.remove('active-tab');
     });
 
-    // 3. Activar el botón presionado
-    const selectedBtn = document.querySelector(`.nav-btn[onclick="switchTab('${tabName}')"]`);
-    if (selectedBtn) selectedBtn.classList.add('active');
+    // 3. Activar el enlace correspondiente
+    const selectedLink = document.querySelector(`.navbar a[href="#${tabName}"]`);
+    if (selectedLink) selectedLink.classList.add('active');
 
-    // 4. Mostrar únicamente la pestaña seleccionada
+    // 4. Mostrar la pestaña seleccionada
     const activeSection = document.getElementById(`section-${tabName}`);
     if (activeSection) {
         if (tabName === 'mapa') {
@@ -249,14 +235,29 @@ function switchTab(tabName) {
         }
         activeSection.classList.add('active-tab');
 
-        // Renderizar la cronología si se selecciona esta pestaña
+        // Renderizar la cronología si es esa pestaña
         if (tabName === 'cronologia' && typeof window.renderTimeline === 'function') {
             window.renderTimeline();
         }
     }
-    /* ===================================================
+}
+
+// Escuchar los cambios en la URL (al dar clic en los links #mapa, #cronologia, etc.)
+window.addEventListener('hashchange', () => {
+    const currentHash = window.location.hash.replace('#', '') || 'mapa';
+    switchTab(currentHash);
+});
+
+// Cargar la pestaña correcta la primera vez
+document.addEventListener('DOMContentLoaded', () => {
+    const initialHash = window.location.hash.replace('#', '') || 'mapa';
+    switchTab(initialHash);
+});
+
+/* ===================================================
    CONTROL DEL PANEL CÓDICE EN MÓVILES
 =================================================== */
+
 function toggleCodexPanel() {
     const panel = document.getElementById('info-panel');
     if (panel) {
@@ -264,14 +265,12 @@ function toggleCodexPanel() {
     }
 }
 
-// Modificamos ligeramente updateInfoPanel para que abra el panel automáticamente al tocar un pin en móvil
+// Sobrescribir updateInfoPanel para abrir en móviles al presionar un pin
 const originalUpdateInfoPanel = updateInfoPanel;
 updateInfoPanel = function(location) {
     originalUpdateInfoPanel(location);
-    // Si estamos en pantalla chica, abre el panel al seleccionar
     if (window.innerWidth <= 768) {
         const panel = document.getElementById('info-panel');
         if (panel) panel.classList.add('active-mobile');
     }
 };
-}
