@@ -72,9 +72,40 @@
         </div>
     </section>
 
-    <!-- PESTAÑA 3: SECCIÓN NPCS -->
+<!-- PESTAÑA 3: SECCIÓN NPCS (CATÁLOGO / CARTAS) -->
     <section id="section-npcs" class="tab-content" style="display: none;">
-        <!-- Se llenará más adelante -->
+        <div class="npcs-container">
+            
+            <!-- BARRA DE FILTROS Y BÚSQUEDA -->
+            <div class="npc-filters-bar">
+                <div class="search-box">
+                    <input type="text" id="npc-search-input" placeholder="🔍 Buscar NPC por nombre, ocupación..." onkeyup="filterNPCs()">
+                </div>
+                <div class="filter-dropdowns">
+                    <select id="filter-location" onchange="filterNPCs()">
+                        <option value="all">📍 Todas las Ubicaciones</option>
+                        <option value="Plains of Dawn">Plains of Dawn</option>
+                        <option value="Costa del Sol">Costa del Sol</option>
+                        <option value="Tierras Salvajes">Tierras Salvajes</option>
+                    </select>
+
+                    <select id="filter-attitude" onchange="filterNPCs()">
+                        <option value="all">🎭 Actitud / Relación</option>
+                        <option value="Aliado">Aliado</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Hostil">Hostil</option>
+                    </select>
+
+                    <button class="btn-reset-filters" onclick="resetNPCFilters()">Limpiar Filtros</button>
+                </div>
+            </div>
+
+            <!-- REJILLA DE CARTAS DE NPCS -->
+            <div id="npcs-grid" class="npcs-grid">
+                <!-- Se llenará dinámicamente desde js/npcs.js -->
+            </div>
+
+        </div>
     </section>
 
     <!-- PESTAÑA 4: SECCIÓN DIARIO -->
@@ -105,6 +136,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
     <script src="js/characters.js"></script>
+    <script src="js/npcs.js"></script> <!-- AÑADIR ESTA LÍNEA -->
     <script src="js/timeline.js"></script>
 </body>
 </html>

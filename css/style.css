@@ -528,7 +528,163 @@ body {
 }
 
 /* ===================================================
-   7. ADAPTACIÓN MÓVIL (RESPONSIVE FINAL)
+   7. SECCIÓN NPCS: CATÁLOGO Y CARTAS
+=================================================== */
+
+#section-npcs {
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+    background-color: var(--bg-dark);
+    padding: 1.5rem;
+}
+
+.npcs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* BARRA DE FILTROS */
+.npc-filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-panel);
+    border: 1px solid var(--gold-accent);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.search-box input {
+    background: #121316;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    width: 280px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: var(--gold-bright);
+}
+
+.filter-dropdowns {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.filter-dropdowns select {
+    background: #121316;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-reset-filters {
+    background: rgba(197, 160, 89, 0.15);
+    border: 1px solid var(--gold-accent);
+    color: var(--gold-bright);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.btn-reset-filters:hover {
+    background: var(--gold-accent);
+    color: var(--bg-dark);
+}
+
+/* REJILLA DE CARTAS DE NPCS */
+.npcs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* LA CARTA DE NPC */
+.npc-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.npc-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-accent);
+}
+
+.npc-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--gold-accent);
+    flex-shrink: 0;
+}
+
+.npc-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.npc-name {
+    font-family: var(--font-title);
+    color: var(--gold-bright);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.npc-role {
+    font-size: 0.85rem;
+    color: #a89f91;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.npc-meta {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+/* BADGES DE ACTITUD */
+.badge-attitude {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 0.4rem;
+}
+
+.badge-attitude.Aliado { background: rgba(46, 125, 50, 0.3); color: #81c784; border: 1px solid #4caf50; }
+.badge-attitude.Neutral { background: rgba(230, 81, 0, 0.3); color: #ffb74d; border: 1px solid #ff9800; }
+.badge-attitude.Hostil { background: rgba(183, 28, 28, 0.3); color: #e57373; border: 1px solid #f44336; }
+
+/* ===================================================
+   8. ADAPTACIÓN MÓVIL (RESPONSIVE FINAL)
 =================================================== */
 @media (max-width: 768px) {
     .navbar {
