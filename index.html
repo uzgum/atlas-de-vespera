@@ -138,5 +138,40 @@
     <script src="js/characters.js"></script>
     <script src="js/npcs.js"></script> <!-- AÑADIR ESTA LÍNEA -->
     <script src="js/timeline.js"></script>
+
+<!-- MODAL DE FICHA DE NPC -->
+    <div id="npc-modal" class="npc-modal-backdrop" onclick="closeNPCModal(event)">
+        <div class="npc-modal-card">
+            <span class="close-npc-modal" onclick="forceCloseNPCModal()">&times;</span>
+            
+            <div class="npc-modal-body">
+                <!-- Columna Izquierda: Imagen del NPC (Clickeable para ver zoom) -->
+                <div class="npc-modal-portrait-container" onclick="zoomNPCImage()">
+                    <img id="npc-modal-img" src="" alt="Retrato NPC">
+                    <span class="zoom-hint">🔍 Ampliar Imagen</span>
+                </div>
+
+                <!-- Columna Derecha: Información Detallada -->
+                <div class="npc-modal-details">
+                    <div class="npc-modal-header">
+                        <h2 id="npc-modal-name">Nombre NPC</h2>
+                        <span id="npc-modal-role" class="npc-modal-role">Rol o Título</span>
+                    </div>
+
+                    <div class="npc-modal-tags">
+                        <span id="npc-modal-location" class="tag-location">📍 Ubicación</span>
+                        <span id="npc-modal-attitude" class="badge-attitude">Actitud</span>
+                    </div>
+
+                    <hr class="codex-divider">
+
+                    <div class="npc-modal-description">
+                        <p id="npc-modal-desc">Descripción o historia del NPC...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

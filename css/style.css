@@ -684,6 +684,170 @@ body {
 .badge-attitude.Hostil { background: rgba(183, 28, 28, 0.3); color: #e57373; border: 1px solid #f44336; }
 
 /* ===================================================
+  7.1 MODAL DE FICHA COMPLETA DE NPC
+=================================================== */
+
+.npc-modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 9990;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.npc-modal-card {
+    background: #18191e;
+    border: 2px solid var(--gold-accent);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 680px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(197, 160, 89, 0.2);
+    animation: zoomIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.close-npc-modal {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    color: var(--gold-accent);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.close-npc-modal:hover {
+    color: var(--gold-bright);
+}
+
+.npc-modal-body {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.8rem;
+}
+
+.npc-modal-portrait-container {
+    width: 200px;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--gold-accent);
+}
+
+.npc-modal-portrait-container img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.npc-modal-portrait-container:hover img {
+    transform: scale(1.05);
+}
+
+.zoom-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    color: var(--gold-bright);
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 4px 0;
+    font-family: var(--font-title);
+}
+
+.npc-modal-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.npc-modal-header h2 {
+    font-family: var(--font-title);
+    color: var(--gold-bright);
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+}
+
+.npc-modal-role {
+    font-size: 0.95rem;
+    color: #a89f91;
+    font-style: italic;
+}
+
+.npc-modal-tags {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.tag-location {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    background: #25262c;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #3d3b42;
+}
+
+.codex-divider {
+    border: none;
+    border-top: 1px dashed rgba(197, 160, 89, 0.3);
+    margin-bottom: 1rem;
+}
+
+.npc-modal-description {
+    line-height: 1.6;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* RESPONSIVE MÓVIL DEL MODAL */
+@media (max-width: 600px) {
+    .npc-modal-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .npc-modal-portrait-container {
+        width: 160px;
+    }
+
+    .npc-modal-portrait-container img {
+        height: 200px;
+    }
+
+    .npc-modal-tags {
+        justify-content: center;
+    }
+}
+
+/* ===================================================
    8. ADAPTACIÓN MÓVIL (RESPONSIVE FINAL)
 =================================================== */
 @media (max-width: 768px) {
