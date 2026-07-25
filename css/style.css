@@ -164,13 +164,8 @@ body {
     left: 0;
 }
 
-.poi-pin {
-    background-color: #f4ebd0;
-}
-
-.party-pin {
-    background-color: #8b0000;
-}
+.poi-pin { background-color: #f4ebd0; }
+.party-pin { background-color: #8b0000; }
 
 .party-indicator {
     width: 0;
@@ -182,6 +177,11 @@ body {
     top: -12px;
     left: 2px;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
+
+.close-codex-btn,
+.mobile-codex-btn {
+    display: none;
 }
 
 /* ===================================================
@@ -252,6 +252,36 @@ body {
     border-radius: 8px;
     object-fit: cover;
     border: 2px solid #c5a059;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    display: block;
+}
+
+.portrait-wrapper {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 2px solid #c5a059;
+    flex-shrink: 0;
+}
+
+.portrait-wrapper:hover .character-portrait {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+}
+
+.zoom-icon {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #c5a059;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    pointer-events: none;
+    font-family: var(--font-title);
 }
 
 .character-stats-bar {
@@ -271,266 +301,69 @@ body {
 .stat-box span { display: block; font-size: 0.8rem; color: #a89f91; }
 .stat-box strong { font-size: 1.2rem; color: #f4ebd0; }
 
-.btn-download-pdf {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    background: #8b0000;
-    color: #f4ebd0;
+/* CONTENEDOR Y BOTONES DE ACCIÓN (UNIFICADOS) */
+.character-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1.8rem;
+}
+
+.btn-download-pdf,
+.btn-view-spells {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 42px;
+    padding: 0 1.2rem;
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     text-decoration: none;
-    border: 1px solid #c5a059;
     border-radius: 6px;
-    font-weight: bold;
-    transition: background 0.2s;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+/* Botón Primario: Hoja de Personaje (Rojo Granate) */
+.btn-download-pdf {
+    background: linear-gradient(135deg, #7a1212 0%, #4a0909 100%);
+    border: 1px solid #a82424;
+    color: #fce8cd;
 }
 
 .btn-download-pdf:hover {
-    background: #a30000;
+    background: linear-gradient(135deg, #961818 0%, #610d0d 100%);
+    border-color: var(--gold-bright);
+    box-shadow: 0 4px 12px rgba(168, 36, 36, 0.4);
+    transform: translateY(-2px);
 }
 
-/* MODAL Y LIGHTBOX */
-.portrait-wrapper {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 2px solid #c5a059;
+/* Botón Secundario: Libro de Conjuros (Dorado Místico) */
+.btn-view-spells {
+    background: linear-gradient(135deg, #28241e 0%, #171512 100%);
+    border: 1px solid var(--gold-accent);
+    color: var(--gold-bright);
 }
 
-.portrait-wrapper:hover .character-portrait {
-    transform: scale(1.05);
-    filter: brightness(0.8);
-}
-
-.portrait-wrapper .character-portrait {
-    transition: transform 0.3s ease, filter 0.3s ease;
-    display: block;
-}
-
-.zoom-icon {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: #c5a059;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    pointer-events: none;
-    font-family: 'Cinzel', serif;
-}
-
-.image-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    max-width: 85%;
-    max-height: 80vh;
-    border: 2px solid #c5a059;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
-    animation: zoom 0.3s ease;
-}
-
-#modal-caption {
-    margin-top: 15px;
-    color: #f4ebd0;
-    font-family: 'Cinzel', serif;
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 2px #000;
-}
-
-.close-modal {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #c5a059;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close-modal:hover {
-    color: #fff;
-}
-
-@keyframes zoom {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+.btn-view-spells:hover {
+    background: rgba(197, 160, 89, 0.25);
+    border-color: var(--gold-bright);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+    transform: translateY(-2px);
 }
 
 /* ===================================================
-   5. SECCIÓN CRONOLOGÍA (ESTILOS Y SCROLL)
+   5. SECCIÓN NPCS: CATÁLOGO Y CARTAS
 =================================================== */
-
-#section-cronologia {
-    height: calc(100vh - 65px) !important;
-    overflow-y: auto !important;
-    background-color: #0b0c0e !important;
-    background-image: 
-        radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 0),
-        radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 12, 14, 1) 80%);
-    background-size: 24px 24px, 100% 100%;
-    background-attachment: local, fixed;
-}
-
-.timeline-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 6rem 1.5rem;
-    color: #f4ebd0;
-    position: relative;
-}
-
-.timeline-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.timeline-header h2 {
-    font-family: 'Cinzel', serif;
-    color: #f0c975;
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
-}
-
-.timeline-header p {
-    color: #a89f91;
-    font-style: italic;
-}
-
-/* Eje central de la línea del tiempo */
-.timeline {
-    position: relative;
-    padding: 1rem 0;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 18px;
-    height: 100%;
-    width: 3px;
-    background: linear-gradient(180deg, #c5a059 0%, rgba(197, 160, 89, 0.2) 100%);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 2.5rem;
-    padding-left: 50px;
-}
-
-.timeline-dot {
-    position: absolute;
-    left: 10px;
-    top: 22px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background-color: #121316;
-    border: 3px solid #f0c975;
-    box-shadow: 0 0 10px rgba(240, 201, 117, 0.6);
-    z-index: 2;
-}
-
-/* Tarjeta de cada Era */
-.timeline-content {
-    background: #18191e;
-    border: 1px solid #c5a059;
-    border-radius: 8px;
-    padding: 1.8rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-}
-
-.timeline-era {
-    font-family: 'Cinzel', serif;
-    color: #f0c975;
-    font-size: 1.4rem;
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
-    padding-bottom: 0.4rem;
-}
-
-.timeline-quote {
-    font-style: italic;
-    color: #c5a059;
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-}
-
-.timeline-text {
-    line-height: 1.7;
-    color: #d1c7b7;
-    font-size: 0.98rem;
-    white-space: pre-line;
-}
-
-/* Diseño alternado izquierda/derecha para PC */
-@media (min-width: 769px) {
-    .timeline::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .timeline-item {
-        width: 50%;
-        padding-left: 0;
-        padding-right: 40px;
-        box-sizing: border-box;
-    }
-
-    .timeline-item:nth-child(even) {
-        margin-left: 50%;
-        padding-left: 40px;
-        padding-right: 0;
-    }
-
-    /* Puntos para tarjetas a la IZQUIERDA (se mandan a la línea central) */
-    .timeline-item:nth-child(odd) .timeline-dot {
-        left: auto !important;
-        right: -9px !important;
-        top: 25px !important;
-        transform: none !important;
-    }
-
-    /* Puntos para tarjetas a la DERECHA (se mandan a la línea central) */
-    .timeline-item:nth-child(even) .timeline-dot {
-        left: -9px !important;
-        right: auto !important;
-        top: 25px !important;
-        transform: none !important;
-    }
-}
-
-/* ===================================================
-   6. BOTONES EXPLORADOR CÓDICE (GLOBAL)
-=================================================== */
-.close-codex-btn,
-.mobile-codex-btn {
-    display: none;
-}
-
-/* ===================================================
-   7. SECCIÓN NPCS: CATÁLOGO Y CARTAS
-=================================================== */
-
 #section-npcs {
     height: calc(100vh - 65px);
     overflow-y: auto;
@@ -543,7 +376,6 @@ body {
     margin: 0 auto;
 }
 
-/* BARRA DE FILTROS */
 .npc-filters-bar {
     display: flex;
     flex-wrap: wrap;
@@ -607,14 +439,12 @@ body {
     color: var(--bg-dark);
 }
 
-/* REJILLA DE CARTAS DE NPCS */
 .npcs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1.5rem;
 }
 
-/* LA CARTA DE NPC */
 .npc-card {
     background: var(--bg-panel);
     border: 1px solid var(--border-color);
@@ -669,7 +499,6 @@ body {
     line-height: 1.4;
 }
 
-/* BADGES DE ACTITUD */
 .badge-attitude {
     display: inline-block;
     padding: 2px 8px;
@@ -683,17 +512,11 @@ body {
 .badge-attitude.Neutral { background: rgba(230, 81, 0, 0.3); color: #ffb74d; border: 1px solid #ff9800; }
 .badge-attitude.Hostil { background: rgba(183, 28, 28, 0.3); color: #e57373; border: 1px solid #f44336; }
 
-/* ===================================================
-  7.1 MODAL DE FICHA COMPLETA DE NPC
-=================================================== */
-
+/* MODAL DE FICHA COMPLETA DE NPC */
 .npc-modal-backdrop {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(6px);
     z-index: 9990;
@@ -716,8 +539,7 @@ body {
 
 .close-npc-modal {
     position: absolute;
-    top: 12px;
-    right: 18px;
+    top: 12px; right: 18px;
     color: var(--gold-accent);
     font-size: 2rem;
     font-weight: bold;
@@ -726,9 +548,7 @@ body {
     transition: color 0.2s;
 }
 
-.close-npc-modal:hover {
-    color: var(--gold-bright);
-}
+.close-npc-modal:hover { color: var(--gold-bright); }
 
 .npc-modal-body {
     display: flex;
@@ -754,15 +574,11 @@ body {
     transition: transform 0.3s ease;
 }
 
-.npc-modal-portrait-container:hover img {
-    transform: scale(1.05);
-}
+.npc-modal-portrait-container:hover img { transform: scale(1.05); }
 
 .zoom-hint {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 0; left: 0; width: 100%;
     background: rgba(0, 0, 0, 0.75);
     color: var(--gold-bright);
     font-size: 0.75rem;
@@ -821,30 +637,169 @@ body {
     padding-right: 5px;
 }
 
+/* ===================================================
+   6. MODAL Y LIGHTBOX DE IMÁGENES
+=================================================== */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    max-width: 85%;
+    max-height: 80vh;
+    border: 2px solid #c5a059;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+    animation: zoom 0.3s ease;
+}
+
+#modal-caption {
+    margin-top: 15px;
+    color: #f4ebd0;
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px; right: 35px;
+    color: #c5a059;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover { color: #fff; }
+
+@keyframes zoom {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
 @keyframes zoomIn {
     from { transform: scale(0.85); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* RESPONSIVE MÓVIL DEL MODAL */
-@media (max-width: 600px) {
-    .npc-modal-body {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+/* ===================================================
+   7. SECCIÓN CRONOLOGÍA
+=================================================== */
+#section-cronologia {
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto !important;
+    background-color: #0b0c0e !important;
+    background-image: 
+        radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 0),
+        radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 12, 14, 1) 80%);
+    background-size: 24px 24px, 100% 100%;
+    background-attachment: local, fixed;
+}
 
-    .npc-modal-portrait-container {
-        width: 160px;
-    }
+.timeline-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem 1.5rem;
+    color: #f4ebd0;
+    position: relative;
+}
 
-    .npc-modal-portrait-container img {
-        height: 200px;
-    }
+.timeline-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
 
-    .npc-modal-tags {
-        justify-content: center;
-    }
+.timeline-header h2 {
+    font-family: var(--font-title);
+    color: #f0c975;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+.timeline-header p {
+    color: #a89f91;
+    font-style: italic;
+}
+
+.timeline {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 18px;
+    height: 100%; width: 3px;
+    background: linear-gradient(180deg, #c5a059 0%, rgba(197, 160, 89, 0.2) 100%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 50px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 10px; top: 22px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background-color: #121316;
+    border: 3px solid #f0c975;
+    box-shadow: 0 0 10px rgba(240, 201, 117, 0.6);
+    z-index: 2;
+}
+
+.timeline-content {
+    background: #18191e;
+    border: 1px solid #c5a059;
+    border-radius: 8px;
+    padding: 1.8rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+}
+
+.timeline-era {
+    font-family: var(--font-title);
+    color: #f0c975;
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
+    padding-bottom: 0.4rem;
+}
+
+.timeline-quote {
+    font-style: italic;
+    color: #c5a059;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.timeline-text {
+    line-height: 1.7;
+    color: #d1c7b7;
+    font-size: 0.98rem;
+    white-space: pre-line;
+}
+
+@media (min-width: 769px) {
+    .timeline::before { left: 50%; transform: translateX(-50%); }
+    .timeline-item { width: 50%; padding-left: 0; padding-right: 40px; box-sizing: border-box; }
+    .timeline-item:nth-child(even) { margin-left: 50%; padding-left: 40px; padding-right: 0; }
+    .timeline-item:nth-child(odd) .timeline-dot { left: auto !important; right: -9px !important; top: 25px !important; transform: none !important; }
+    .timeline-item:nth-child(even) .timeline-dot { left: -9px !important; right: auto !important; top: 25px !important; transform: none !important; }
 }
 
 /* ===================================================
@@ -879,7 +834,6 @@ body {
         white-space: nowrap;
     }
 
-    /* Mapa en celular */
     #section-mapa.active-tab {
         display: block !important;
         position: relative;
@@ -898,11 +852,9 @@ body {
         width: 100% !important;
         height: 100% !important;
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 0; left: 0;
     }
 
-    /* Personajes en móvil */
     .characters-layout {
         flex-direction: column;
         height: auto;
@@ -932,41 +884,34 @@ body {
         gap: 0.5rem;
     }
 
-    .stat-box {
-        padding: 0.4rem 0.6rem;
-    }
+    .stat-box { padding: 0.4rem 0.6rem; }
 
-    /* Botón Flotante Códice en móvil */
     .mobile-codex-btn {
         display: flex !important;
         align-items: center;
         gap: 6px;
         position: absolute;
-        bottom: 25px;
-        right: 20px;
+        bottom: 25px; right: 20px;
         z-index: 1000;
         background: #1b1c22;
         color: #f0c975;
         border: 2px solid #c5a059;
         padding: 10px 18px;
         border-radius: 25px;
-        font-family: 'Cinzel', serif;
+        font-family: var(--font-title);
         font-weight: bold;
         font-size: 0.9rem;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
         cursor: pointer;
     }
 
-    /* Botón Cierre X circular en móvil */
     .close-codex-btn {
         display: flex !important;
         align-items: center;
         justify-content: center;
         position: absolute;
-        top: 12px;
-        right: 15px;
-        width: 32px;
-        height: 32px;
+        top: 12px; right: 15px;
+        width: 32px; height: 32px;
         background: rgba(197, 160, 89, 0.15) !important;
         border: 1px solid #c5a059 !important;
         border-radius: 50% !important;
@@ -984,7 +929,6 @@ body {
         color: #121316 !important;
     }
 
-    /* Panel Códice desplegable desde ABAJO */
     .codex-panel {
         position: absolute;
         top: auto !important;
@@ -1003,7 +947,17 @@ body {
         padding: 2rem 1.2rem 1.5rem 1.2rem;
     }
 
-    .codex-panel.active-mobile {
-        bottom: 0 !important;
+    .codex-panel.active-mobile { bottom: 0 !important; }
+}
+
+@media (max-width: 600px) {
+    .npc-modal-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
+
+    .npc-modal-portrait-container { width: 160px; }
+    .npc-modal-portrait-container img { height: 200px; }
+    .npc-modal-tags { justify-content: center; }
 }

@@ -1,6 +1,7 @@
 /* ===================================================
    GESTIÓN DE PERSONAJES Y FICHAS
 =================================================== */
+
 /* === PLANTILLA PARA NUEVO PERSONAJE ===
 {
         id: 'pj-X',
@@ -9,14 +10,13 @@
         raceClass: '',
         avatar: 'img/personajes/nombre.jpg',
         pdfUrl: 'docs/hoja-nombre.pdf',
+        spellbookUrl: 'docs/spells/conjuros_clase.pdf', // (Opcional) Abrirá el PDF en pestaña nueva
         alignment: '',
         background: '',
         stats: { hp: 0, ac: 0, speed: '30 ft' },
         description: ''
     },
 ========================================= */
-
-//recordatorio, cambiar el .html a .pdf de las hojas para permirir la descarga directa de las hojas de personaje en PDF.
 
 const characters = [
     {
@@ -25,7 +25,8 @@ const characters = [
         player: 'Ari',
         raceClass: 'Sirena / Cleriga (Nivel 1)',
         avatar: 'img/personajes/inna.png',
-        pdfUrl: 'docs/hoja-inna.html',
+        pdfUrl: 'docs/hoja-inna.pdf',
+        spellbookUrl: 'docs/spells/conjuros_clerigo.pdf',
         alignment: 'Caótico Bueno',
         background: 'Acolita',
         stats: { hp: 9, ac: 11, speed: '30 ft' },
@@ -37,7 +38,8 @@ const characters = [
         player: 'Erick',
         raceClass: 'Lotol / Guerrero (Nivel 1)',
         avatar: 'img/personajes/Kani.jpeg',
-        pdfUrl: 'docs/hoja-kani.html',
+        pdfUrl: 'docs/hoja-kani.pdf',
+        spellbookUrl: '', // Los marciales no tienen libro de hechizos
         alignment: 'Caótico Bueno',
         background: 'Guardia',
         stats: { hp: 12, ac: 16, speed: '30 ft' },
@@ -49,7 +51,8 @@ const characters = [
         player: 'Adrian',
         raceClass: 'Elfa Astral / Artificiera (Nivel 1)',
         avatar: 'img/personajes/seira.jpeg',
-        pdfUrl: 'docs/hoja-seira.html',
+        pdfUrl: 'docs/hoja-seira.pdf',
+        spellbookUrl: 'docs/spells/conjuros_artificiero.pdf',
         alignment: 'Caótico Neutral',
         background: 'Cazador',
         stats: { hp: 8, ac: 12, speed: '30 ft' },
@@ -61,7 +64,8 @@ const characters = [
         player: 'Monts',
         raceClass: 'Dhampire / Mago (Nivel 1)',
         avatar: 'img/personajes/mooneth.jpg',
-        pdfUrl: 'docs/hoja-mooneth.html',
+        pdfUrl: 'docs/hoja-mooneth.pdf',
+        spellbookUrl: 'docs/spells/conjuros_mago.pdf',
         alignment: 'Legal buena',
         background: 'Aprendiz de mago',
         stats: { hp: 7, ac: 12, speed: '30 ft' },
@@ -73,7 +77,8 @@ const characters = [
         player: 'Beto',
         raceClass: 'Humano / Druida (Nivel 1)',
         avatar: 'img/personajes/ren kumari.jpg',
-        pdfUrl: 'docs/hoja-ren.html',
+        pdfUrl: 'docs/hoja-ren.pdf',
+        spellbookUrl: 'docs/spells/conjuros_druida.pdf',
         alignment: 'Neutral',
         background: 'Tocado por las estrellas',
         stats: { hp: 11, ac: 14, speed: '30 ft' },
@@ -85,7 +90,8 @@ const characters = [
         player: 'Marco',
         raceClass: 'Humano / Brujo (Nivel 1)',
         avatar: 'img/personajes/pendiente.jpg',
-        pdfUrl: 'docs/hoja-marco.html',
+        pdfUrl: 'docs/hoja-marco.pdf',
+        spellbookUrl: 'docs/spells/conjuros_brujo.pdf',
         alignment: 'Caotico bueno',
         background: 'Granjero',
         stats: { hp: 10, ac: 12, speed: '30 ft' },
@@ -97,15 +103,13 @@ const characters = [
         player: 'Joa',
         raceClass: 'Tabaxi / Pícaro (Nivel 1)',
         avatar: 'img/personajes/Nyxidea.jpeg',
-        pdfUrl: 'docs/hoja-nyxidea.html',
+        pdfUrl: 'docs/hoja-nyxidea.pdf',
+        spellbookUrl: '',
         alignment: 'Neutral Buena',
         background: 'Asesina',
         stats: { hp: 10, ac: 15, speed: '30 ft' },
         description: 'Antigua asesina del gremio del Velo Gris que abandonó su primer gran contrato al descubrir un secreto capaz de cambiar el destino del mundo.'
-    },
-
-    
-    
+    }
 ];
 
 function renderCharactersList() {
@@ -129,6 +133,9 @@ function selectCharacter(pjId) {
 
     const detailContainer = document.getElementById('character-detail-panel');
     if (!detailContainer) return;
+
+    // Verificamos si este personaje tiene un libro de hechizos definido
+    const hasSpellbook = pj.spellbookUrl && pj.spellbookUrl.trim() !== '';
 
     detailContainer.innerHTML = `
         <div class="character-detail-content">
@@ -161,6 +168,12 @@ function selectCharacter(pjId) {
                 <a href="${pj.pdfUrl}" download class="btn-download-pdf">
                     📄 Descargar Hoja de Personaje (PDF)
                 </a>
+
+                ${hasSpellbook ? `
+                    <a href="${pj.spellbookUrl}" target="_blank" class="btn-view-spells">
+                        📜 Ver Libro de Conjuros (PDF)
+                    </a>
+                ` : ''}
             </div>
         </div>
     `;
